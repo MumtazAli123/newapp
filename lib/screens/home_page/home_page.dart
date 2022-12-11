@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:newapp/screens/signing/signing_screen.dart';
 
-class USerProfile extends StatefulWidget {
-  const USerProfile({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  State<USerProfile> createState() => _USerProfileState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _USerProfileState extends State<USerProfile> {
+class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -43,7 +43,7 @@ class _USerProfileState extends State<USerProfile> {
   }
 
   _buildBody(){
-    return Expanded(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

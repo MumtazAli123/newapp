@@ -61,7 +61,7 @@ class AuthenticationService with ChangeNotifier {
       _authToken = jsonList['data']['token'];
       _authToken = (await getToken()).toString();
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const USerProfile(),
+        builder: (context) => const MyHomePage(),
       ));
     } else {
       throw Exception('Failed to post login credentials');
