@@ -26,17 +26,24 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   _buildBody(){
     return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          TextFormField(
-            decoration: UIConfig().inputDecoration('Email', 'Email ', Icons.email, null, () { }),
-          ),
-          TextFormField(
-            decoration: UIConfig().inputDecoration('Password', 'Password', Icons.lock, Icons.visibility, () { }),
-          ),
-          CustomButtonScreen(buttonText: 'Login', onPressed: (){}, icon: Icons.lock)
-        ],
+      child: Container(
+        width: 350,
+        margin: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextFormField(
+              decoration: UIConfig().inputDecoration('Email', 'Email ', Icons.email, null, () { }),
+            ),
+            const SizedBox(height: 20,),
+            TextFormField(
+              decoration: UIConfig().inputDecoration('Password', 'Password', Icons.lock, Icons.visibility, () { }),
+            ),
+            const SizedBox(height: 20,),
+            CustomButtonScreen(buttonText: 'Login', onPressed: (){}, icon: Icons.lock)
+          ],
+        ),
       ),
     );
   }

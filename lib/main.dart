@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:newapp/screens/home_page/home_page.dart';
-import 'package:newapp/screens/signing/signing_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePageScreen(),
+      home: const USerProfile(),
     );
   }
 }

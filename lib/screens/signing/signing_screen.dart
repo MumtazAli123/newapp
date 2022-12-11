@@ -47,14 +47,18 @@ class _SigningScreenState extends State<SigningScreen> {
             TextFormField(
               decoration: UIConfig().inputDecoration('Name', "Enter Name", Icons.person,
                   null, () { })),
+            const SizedBox(height: 20,),
             TextFormField(
               decoration: UIConfig().inputDecoration('Email', 'Enter Email', Icons.email, null, () { })),
+            const SizedBox(height: 20,),
             TextFormField(
               decoration: UIConfig().inputDecoration('Phone', 'Phone', Icons.phone_iphone, null, () { }),
             ),
+            const SizedBox(height: 20,),
             TextFormField(
               decoration: UIConfig().inputDecoration('Password', 'Password', Icons.lock, Icons.visibility, () { }),),
-            CustomButtonScreen(buttonText: 'Signing', onPressed: (){}, icon: Icons.lock)
+            const SizedBox(height: 20,),
+            CustomButtonScreen(buttonText: 'Signing', onPressed: (){}, icon: Icons.person)
           ],
         ),
       ),

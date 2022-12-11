@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:newapp/screens/signing/signing_screen.dart';
 
-class MyHomePageScreen extends StatefulWidget {
-  const MyHomePageScreen({Key? key}) : super(key: key);
+class USerProfile extends StatefulWidget {
+  const USerProfile({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePageScreen> createState() => _MyHomePageScreenState();
+  State<USerProfile> createState() => _USerProfileState();
 }
 
-class _MyHomePageScreenState extends State<MyHomePageScreen> {
+class _USerProfileState extends State<USerProfile> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -43,11 +43,11 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
   }
 
   _buildBody(){
-    return Center(
+    return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+           const Text(
             'You have pushed the button this many times:',
           ),
           Text(
