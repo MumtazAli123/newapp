@@ -5,56 +5,52 @@ import '../http_constants/http_constants.dart';
 import '../models/userprofile_model.dart';
 import '../screens/home_page/home_page.dart';
 
-class AuthenticationService with ChangeNotifier {
+class AuthService with ChangeNotifier {
   String _authToken = "";
-
-  AuthenticationService._internal();
-  factory AuthenticationService() {
+  AuthService._internal();
+  factory AuthService() {
     return _instance;
   }
-  static final AuthenticationService _instance =
-  AuthenticationService._internal();
 
+  static final AuthService _instance = AuthService._internal();
   Map<String, String> _getRequestHeaders() {
-    return {
-      "Accept": "application/json",
-      'Authorization': 'Bearer $_authToken'
-    };
+    return {"Accepet": "application/json", "Authorization": 'Bear $_authToken'};
   }
 
-  // Http Get request
-  Future<http.Response> _get(String endPoint, Map<String, String> header) {
+  // http get request,
+  //ignore: unused_element
+  Future<http.Response> _get(
+    String endPoint,
+    Map<String, String> header,
+  ) {
     String url = APIConstants.API_BASE_URL + endPoint;
-    // print("_get: $url");
+    // print get url
     Uri uri = Uri.parse(url);
     return http.get(uri, headers: header);
   }
 
-  // Http Post request
+  // http post request
   Future<http.Response> _post(
       String endPoint, Map<String, String> header, Map<String, dynamic> body) {
     String url = APIConstants.API_BASE_URL + endPoint;
-    // print("_post: $url");
     Uri uri = Uri.parse(url);
-    return http.post(uri, headers: header, body: body);
+    return http.post(uri);
   }
 
-  // Convert To JSON
-  // ignore: unused_element
+  // Convert to json
   Map<String, dynamic> _convertJsonToMap(String response) {
     return json.decode(response);
   }
 
-  // getter for token
+  //  getter for token
   Future<String?> getToken() async {
     return _authToken;
   }
 
-// Post Login Credential to API
+  // Post login Api
   Future Login(email, password, BuildContext context) async {
     http.Response response = await _post(
         "/login?email=$email&password=$password", _getRequestHeaders(), {});
-    // Response code
     if (response.statusCode == 200) {
       var jsonList = json.decode(response.body);
       print(jsonList);
@@ -64,74 +60,44 @@ class AuthenticationService with ChangeNotifier {
         builder: (context) => const MyHomePage(),
       ));
     } else {
-      throw Exception('Failed to post login credentials');
+      throw Exception("Faild to Post");
     }
   }
 
-  // Post Signup Credential to API
-  Future Signup(name, email, password, confirm_password, phone,
+  Future Signup(name, email, password, confrimPassword, phone,
       BuildContext context) async {
     http.Response response = await _post(
-        "/register?name=$name&email=$email&password=$password&confirm_password=$confirm_password&phone=$phone",
+        "/register?name=$name&email=$email&password=$password&confrimPassword=$confrimPassword",
         _getRequestHeaders(), {});
-    // Response code
+    // responsw code
     if (response.statusCode == 200) {
       var jsonList = json.decode(response.body);
       print(jsonList);
     } else {
-      throw Exception('User Already register');
+      throw Exception('Usert Already Register');
     }
   }
 
-  // get Logout Credential from API
+  // get request api
   Future Logout(BuildContext context) async {
-    http.Response response = await _get("/logout", _getRequestHeaders());
+    http.Response response = await _get("/lagout", _getRequestHeaders());
     if (response.statusCode == 200) {
       var jsonList = json.decode(response.body);
       print(jsonList);
     } else {
-      throw Exception('Failed to logout');
+      throw Exception('Failed to Logout');
     }
   }
 
   Future<UserProfileModel> getProfile() async {
     http.Response response = await _get("/profile", _getRequestHeaders());
-    // Response code
+    // response code
     if (response.statusCode == 200) {
       var jsonList = json.decode(response.body);
       print(jsonList);
       return UserProfileModel.fromJson(jsonList);
     } else {
-      throw Exception('Failed to logout');
+      throw Exception("Failed to logout");
     }
   }
-
-  // Post profile updates to API
-  Future profileUpdate(
-      name,
-      phone,
-      image,
-      ) async {
-    http.Response response = await _post(
-        "/profileUpdate?name=$name&phone=$phone&image=$image",
-        _getRequestHeaders(), {});
-    // Response code
-    if (response.statusCode == 200) {
-      var jsonList = json.decode(response.body);
-      print(jsonList);
-    } else {
-      throw Exception('Failed to update');
-    }
-  }
-}
-
-class AuthException implements Exception {
-  static const cancelled = AuthException('No account');
-
-  const AuthException(this.message);
-
-  final String message;
-
-  @override
-  String toString() => message;
 }

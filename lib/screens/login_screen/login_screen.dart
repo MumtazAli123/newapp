@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:newapp/widgets/custom_button.dart';
 import 'package:newapp/widgets/input_ui.dart';
@@ -19,12 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  _buildAppBar(){
+  _buildAppBar() {
     return AppBar(
       title: const Text('Login'),
     );
   }
-  _buildBody(){
+
+  _buildBody() {
     return Center(
       child: Container(
         width: 350,
@@ -34,14 +34,21 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
-              decoration: UIConfig().inputDecoration('Email', 'Email ', Icons.email, null, () { }),
+              decoration: UIConfig()
+                  .inputDecoration('Email', 'Email ', Icons.email, null, () {}),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             TextFormField(
-              decoration: UIConfig().inputDecoration('Password', 'Password', Icons.lock, Icons.visibility, () { }),
+              decoration: UIConfig().inputDecoration(
+                  'Password', 'Password', Icons.lock, Icons.visibility, () {}),
             ),
-            const SizedBox(height: 20,),
-            CustomButtonScreen(buttonText: 'Login', onPressed: (){}, icon: Icons.lock)
+            const SizedBox(
+              height: 20,
+            ),
+            CustomButtonScreen(
+                buttonText: 'Login', onPressed: () {}, icon: Icons.lock)
           ],
         ),
       ),
