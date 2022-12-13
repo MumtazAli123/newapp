@@ -100,4 +100,32 @@ class AuthService with ChangeNotifier {
       throw Exception("Failed to logout");
     }
   }
+
+  // post profile updated
+  Future profileUpdated(
+    name,
+    phone,
+    image,
+  ) async {
+    http.Response response = await _post(
+        "/profileUpdate?name=$name&phone=$phone&image=$image",
+        _getRequestHeaders(), {});
+    // response code
+    if (response.statusCode == 200) {
+      var jsonList = json.decode(response.body);
+      print(jsonList);
+    } else {
+      throw Exception('faild to updated');
+    }
+  }
+}
+class AuthException implements Exception {
+  static const cancelled = AuthException('No account');
+
+  const AuthException(this.message);
+
+  final String message;
+
+  @override
+  String toString() => message;
 }
